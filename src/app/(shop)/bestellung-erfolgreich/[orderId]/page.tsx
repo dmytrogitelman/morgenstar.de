@@ -11,7 +11,7 @@ export default async function OrderSuccessPage({
 }) {
   const session = await getServerSession(authOptions);
   
-  if (!session?.user?.id) {
+  if (!session?.user?.email) {
     redirect('/anmelden');
   }
 
