@@ -6,8 +6,8 @@ import OrdersClient from './orders-client';
 export default async function OrdersPage() {
   const session = await getServerSession(authOptions);
   
-  if (!session?.user?.id) {
-    redirect('/anmelden?callbackUrl=/bestellungen');
+  if (!session?.user?.email) {
+    redirect('/anmelden');
   }
 
   return (
