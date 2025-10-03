@@ -3,6 +3,7 @@
 import { useSession, signOut } from 'next-auth/react';
 import { useState } from 'react';
 import Link from 'next/link';
+import ThemeToggle from './theme-toggle';
 
 export default function UserMenu() {
   const { data: session, status } = useSession();
@@ -17,9 +18,10 @@ export default function UserMenu() {
   if (!session) {
     return (
       <div className="flex items-center gap-2">
+        <ThemeToggle />
         <Link
           href="/anmelden"
-          className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+          className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
         >
           Anmelden
         </Link>
@@ -34,10 +36,11 @@ export default function UserMenu() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center gap-2">
+      <ThemeToggle />
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+        className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
       >
         {session.user?.image ? (
           <img
@@ -59,28 +62,35 @@ export default function UserMenu() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-1 z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
           <Link
             href="/mein-konto"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
             onClick={() => setIsOpen(false)}
           >
             Mein Konto
           </Link>
           <Link
             href="/bestellungen"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
             onClick={() => setIsOpen(false)}
           >
             Bestellungen
           </Link>
-          <hr className="my-1" />
+          <Link
+            href="/wunschliste"
+            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            onClick={() => setIsOpen(false)}
+          >
+            Wunschliste
+          </Link>
+          <hr className="my-1 border-gray-200 dark:border-gray-700" />
           <button
             onClick={() => {
               signOut({ callbackUrl: '/' });
               setIsOpen(false);
             }}
-            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             Abmelden
           </button>

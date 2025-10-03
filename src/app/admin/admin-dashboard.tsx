@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import EmailTest from '@/components/email-test';
 import StripeTest from '@/components/stripe-test';
+import FeatureTest from '@/components/feature-test';
+import ComprehensiveTest from '@/components/comprehensive-test';
 
 interface DashboardStats {
   totalProducts: number;
@@ -180,13 +182,22 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Email Test Section */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-6">System-Tools</h2>
-        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
-          <EmailTest />
-          <StripeTest />
-        </div>
+              {/* Feature Test Section */}
+              <div className="mt-8">
+                <h2 className="text-2xl font-bold mb-6">🧪 Feature-Tests</h2>
+                <div className="space-y-6">
+                  <ComprehensiveTest />
+                  <FeatureTest />
+                </div>
+              </div>
+
+              {/* System Tools Section */}
+              <div className="mt-8">
+                <h2 className="text-2xl font-bold mb-6">System-Tools</h2>
+                <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+                  <EmailTest />
+                  <StripeTest />
+                </div>
 
         <div className="mt-6">
           <div className="bg-white p-6 rounded-lg border">
